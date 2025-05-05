@@ -1,0 +1,142 @@
+/* 🌟 GENERAL STYLES */
+body {
+  background: #f8f9fa;
+}
+
+/* 🎨 CARD STYLES */
+.card {
+  border-radius: 0.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  font-size: 1rem; /* Reduced for better proportion */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem; /* Less padding for compact look */
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  box-shadow: inset 0 -1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-header i {
+  font-size: 1.2rem; /* Slightly smaller icon */
+  margin-right: 6px;
+}
+
+.card-title {
+  font-size: 0.9rem;
+}
+
+.card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  transition: all 0.2s ease-in-out;
+}
+
+/* 📊 TABLE STYLES */
+.table-responsive {
+  /* border-radius: 0.75rem; */
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+}
+
+.table {
+  /* border-radius: 0.75rem; */
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* 🔹 TABLE HEADER */
+/* Use both selectors to ensure our custom styling overrides Bootstrap */
+.table thead,
+.table-header {
+  /* background: linear-gradient(135deg, #003366, #007bff) !important; */
+  /* color: white !important; */
+  font-size: 1rem !important;
+  /* font-weight: bold !important; */
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  text-align: center;
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 🔸 TABLE DATA */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f8f9fa;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #e9ecef;
+  transition: all 0.2s ease-in-out;
+}
+
+td {
+  vertical-align: middle;
+  text-align: center;
+  padding: 0.75rem;
+  font-weight: 500;
+  background: #ffffff;
+}
+
+/* 🔥 BADGE STYLING */
+.badge {
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  padding: 0.5em 0.75em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.badge-success {
+  background-color: #28a745;
+  color: white;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 📱 MOBILE-FRIENDLY ADJUSTMENTS */
+@media (max-width: 576px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .table th,
+  .table td {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.4em 0.6em;
+  }
+
+  .row {
+    margin-left: -5px;
+    margin-right: -5px;
+    row-gap: 2px;
+  }
+
+  .col {
+    padding: 2px;
+  }
+
+  .g-3 {
+    --bs-gutter-y: -0.1rem;
+    --bs-gutter-x: -0.1rem;
+  }
+}
