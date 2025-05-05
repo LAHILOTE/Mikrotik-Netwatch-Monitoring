@@ -31,25 +31,25 @@ A real-time monitoring dashboard for MikroTik devices built with Node.js, Expres
 ## Installation
 
 1. **Clone the Repository:**
-2. Install Dependencies:
-   npm install
-3. Configure Environment Variables:
-   MIKROTIK_HOST=your_mikrotik_ip
-   MIKROTIK_PORT=8728         # Example: use the API port your device uses
-   MIKROTIK_USER=your_username
-   MIKROTIK_PASS=your_password
+2. #### Install Dependencies:
+       npm install
+3. #### Configure Environment Variables:
+       MIKROTIK_HOST=your_mikrotik_ip
+       MIKROTIK_PORT=8728         # Example: use the API port your device uses
+       MIKROTIK_USER=your_username
+       MIKROTIK_PASS=your_password
 
-File Structure
-.
-├── public/                   # Static files (CSS, client-side JS, images, etc.)
-│   ├── css/
-│   ├── js/
-│   │   └── socket.js         # Client-side WebSocket logic
-│   └── images/
-├── views/                    # EJS templates
-│   └── index.ejs             # Main dashboard template
-├── .env                      # Environment variables (should not be committed)
-├── package.json              
-├── server.js                 # Server code (Express, WebSocket, MikroTik integration)
-└── README.md                 # This file
+#### File Structure
+    .
+    ├── public/                   # Static files (CSS, client-side JS, images, etc.)
+    │   ├── css/
+    │   ├── js/
+    │   │   └── socket.js         # Client-side WebSocket logic
+    │   └── images/
+    ├── views/                    # EJS templates
+    │   └── index.ejs             # Main dashboard template
+    ├── .env                      # Environment variables (should not be committed)
+    ├── package.json              
+    ├── server.js                 # Server code (Express, WebSocket, MikroTik integration)
+    └── README.md                 # This file
 
