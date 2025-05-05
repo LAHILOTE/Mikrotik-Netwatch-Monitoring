@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config(); // Load environment variables
 
 // Use your public IP or '0.0.0.0' to allow external access.
-// For example, if your server’s public IP is 36.93.13.132, you might set HOSTNAME accordingly.
+// For example, if your server’s public IP is 36.93.xx.xxx, you might set HOSTNAME accordingly.
 // Here, I'll leave your original value for demonstration:
 const HOSTNAME = '192.168.4.246';
 const PORT = 8017; // Adjusted for your setup
