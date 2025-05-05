@@ -7,6 +7,19 @@ const escapeHTML = str => str.replace(/[&<>"']/g, c => ({
     "'": '&#39;'
 }[c]));
 
+// Get references to the UI elements for spinner, error notification, and timestamp.
+const loadingSpinner = document.getElementById('loadingSpinner');
+const lastUpdateEl = document.getElementById('lastUpdate');
+const connectionErrorEl = document.getElementById('connectionError');
+
+// Show spinner initially
+loadingSpinner.style.display = 'block';
+
+socket.onopen = () => {
+    // Hide any previous error notifications when connection is established.
+    connectionErrorEl.style.display = 'none';
+};
+
 socket.onmessage = (event) => {
     let data;
     try {
@@ -16,8 +29,7 @@ socket.onmessage = (event) => {
         return; // Exit if message cannot be parsed.
     }
 
-    // If the message is a handshake (contains init flag), you can either ignore it,
-    // or merge with default values. Here we opt to merge with defaults.
+    // Define default values so missing fields won't break the UI.
     const defaultData = {
         cpuUsage: 0,
         hotspotOnline: 0,
@@ -25,13 +37,13 @@ socket.onmessage = (event) => {
         aps: []
     };
 
-    // Merge server data with defaults
+    // Merge the received data with the defaults.
     data = { ...defaultData, ...data };
 
-    // Ensure aps is an array (it might be missing in the handshake)
+    // Ensure data.aps is an array.
     const aps = Array.isArray(data.aps) ? data.aps : [];
 
-    // Use fallback values if fields are missing.
+    // Update metrics in the dashboard.
     document.getElementById('cpuUsage').innerText = data.cpuUsage + '%';
     document.getElementById('hotspotOnline').innerText = data.hotspotOnline;
     document.getElementById('pppOnline').innerText = data.pppOnline;
@@ -44,15 +56,37 @@ socket.onmessage = (event) => {
 
     const apList = document.getElementById('apTableBody');
     apList.innerHTML = '';
-
     aps.forEach(ap => {
         const name = escapeHTML(ap.name);
         const ip = escapeHTML(ap.ip);
         apList.innerHTML += `
-      <tr>
-          <td>${name}</td>
-          <td>${ip}</td>
-          <td><span class="badge ${ap.status === 'ON' ? 'bg-success' : 'bg-danger'}">${ap.status}</span></td>
-      </tr>`;
+            <tr>
+                <td>${name}</td>
+                <td>${ip}</td>
+                <td>
+                    <span class="badge ${ap.status === 'ON' ? 'bg-success' : 'bg-danger'}">
+                        ${ap.status}
+                    </span>
+                </td>
+            </tr>`;
     });
+
+    // Update the last update timestamp.
+    const now = new Date().toLocaleTimeString();
+    lastUpdateEl.innerText = `Last update: ${now}`;
+
+    // Hide the spinner now that data has loaded.
+    loadingSpinner.style.display = 'none';
+};
+
+socket.onerror = (error) => {
+    console.error("WebSocket error observed:", error);
+    connectionErrorEl.innerText = "Error with connection. Please check your network.";
+    connectionErrorEl.style.display = 'block';
+};
+
+socket.onclose = () => {
+    console.warn("WebSocket connection closed.");
+    connectionErrorEl.innerText = "Connection lost. Reconnecting...";
+    connectionErrorEl.style.display = 'block';
 };

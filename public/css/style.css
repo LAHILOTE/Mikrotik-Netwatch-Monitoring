@@ -3,6 +3,38 @@ body {
   background: #f8f9fa;
 }
 
+/* Spinner Styling */
+#loadingSpinner {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: #555;
+  display: none; /* Hidden by default; displayed when active */
+}
+
+/* Error Notification Styling */
+#connectionError {
+  background: #ffdddd;
+  border: 1px solid red;
+  padding: 10px;
+  margin: 10px auto;
+  text-align: center;
+  color: #990000;
+  display: none;
+  width: 90%;
+  max-width: 400px;
+}
+
+/* Last Update Timestamp Styling */
+#lastUpdate {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #333;
+  margin: 15px 0;
+}
+
 /* 🎨 CARD STYLES */
 .card {
   border-radius: 0.75rem;

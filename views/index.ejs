@@ -11,9 +11,21 @@
 </head>
 <body class="bg-light">
   <div class="container py-4">
+    <!-- Error Notification (hidden by default) -->
+    <div id="connectionError" class="alert alert-danger text-center" role="alert" style="display: none;">
+      Connection lost. Trying to reconnect...
+    </div>
+    
+    <!-- Spinner and Last Update Timestamp -->
+    <div id="loadingSpinner" class="text-center" style="display: block;">
+      <i class="fas fa-spinner fa-spin fa-2x"></i>
+      <p>Loading data...</p>
+    </div>
+    
     <!-- LOGO -->
     <div class="text-center mb-4">
       <img src="/assets/images/logo.png" alt="LOGO" height="100" onerror="this.style.display='none'" />
+      <div id="lastUpdate" class="text-center mb-3">Last update: --:--:--</div>
     </div>
 
     <!-- Cards -->
@@ -81,7 +93,7 @@
         <i class="fa fa-table me-2"></i>Detail Access Points
       </div>
       <div class="table-responsive">
-        <table class="table table-sm  table-striped table-hover">
+        <table class="table table-sm table-striped table-hover">
           <thead class="table-dark">
             <tr>
               <th>Nama AP</th>
@@ -94,7 +106,11 @@
               <tr>
                 <td><strong><%= ap.name %></strong></td>
                 <td><%= ap.ip %></td>
-                <td><span class="badge <%= ap.status === 'ON' ? 'badge-success' : 'badge-danger' %>"><%= ap.status %></span></td>
+                <td>
+                  <span class="badge <%= ap.status === 'ON' ? 'badge-success' : 'badge-danger' %>">
+                    <%= ap.status %>
+                  </span>
+                </td>
               </tr>
             <% }); %>
           </tbody>

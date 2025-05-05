@@ -7,8 +7,8 @@ const dotenv = require('dotenv');
 dotenv.config(); // Load environment variables
 
 // Use your public IP or '0.0.0.0' to allow external access.
-// For example, if your server’s public IP is 36.93.xx.xxx, you might set HOSTNAME accordingly.
-// Here, I'll leave your original value for demonstration:
+// For example, if your server’s public IP is 36.93.xx.xxx, set HOSTNAME accordingly.
+// Here, we're using your original value:
 const HOSTNAME = '192.168.4.246';
 const PORT = 8017; // Adjusted for your setup
 
@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 
 // Express route to render the frontend.
 // This route calls the MikroTik API and passes the data to index.ejs.
-// If fetchMikrotikData returns a falsy value (null), we provide a default object.
+// If fetchMikrotikData returns a falsy value, we provide a default object.
 app.get('/', async (req, res) => {
     console.log('🖥 Handling GET request to /');
     const data = (await fetchMikrotikData()) || {
