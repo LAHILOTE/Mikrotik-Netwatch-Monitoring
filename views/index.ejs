@@ -102,7 +102,7 @@
             </tr>
           </thead>
           <tbody id="apTableBody">
-            <% data.aps.forEach(ap => { %>
+            <% (Array.isArray(data.aps) ? data.aps : []).forEach(ap => { %>
               <tr>
                 <td><strong><%= ap.name %></strong></td>
                 <td><%= ap.ip %></td>
